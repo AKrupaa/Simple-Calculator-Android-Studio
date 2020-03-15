@@ -53,6 +53,7 @@ public class Main3Activity extends AppCompatActivity {
 //    dodaje symbole do pojemnika na string
     {
         this.stringContainer = this.stringContainer + button.getText().toString();
+        textView_input.setText(this.stringContainer);
         return this.stringContainer;
     }
 
@@ -63,7 +64,6 @@ public class Main3Activity extends AppCompatActivity {
         }
         Toast.makeText(this, "value is " + result, Toast.LENGTH_SHORT).show();
         return result;
-
     }
 
     @Override
@@ -209,6 +209,7 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 stringContainer = removeLastCharacter(stringContainer);
+                textView_input.setText(stringContainer);
             }
         });
 
@@ -216,8 +217,8 @@ public class Main3Activity extends AppCompatActivity {
         btn_equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
                 textView_output.setText(stringContainer);
+
             }
         });
     }
