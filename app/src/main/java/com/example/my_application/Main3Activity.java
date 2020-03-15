@@ -11,8 +11,6 @@ import android.widget.Toast;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
-import javax.script.ScriptEngineManager;
-
 
 public class Main3Activity extends AppCompatActivity {
 
@@ -21,6 +19,25 @@ public class Main3Activity extends AppCompatActivity {
     TextView textView_input, textView_output;
 
     String stringContainer = "";
+
+
+    public String mathStringToNumbers(String evaluation) {
+//      https://stackoverflow.com/questions/1454425/reference-javax-script-scriptengine-in-android-or-evaluate-a-javascript-expressi
+        Context rhino = Context.enter();
+//      turn off optimization to work with android
+        rhino.setOptimizationLevel(-1);
+
+//        String evaluation = stringContainer;
+        String result;
+
+        Scriptable scope = rhino.initStandardObjects();
+
+        evaluation = evaluation.replaceAll("x", "*");
+        result = rhino.evaluateString(scope, evaluation, "JavaScript", 1, null).toString();
+//      textView_output.setText(result);
+
+        return result;
+    }
 
     public void setButtons()
 //    ustawia wszystkie przyciski, uzywajac findViewById()
@@ -67,7 +84,7 @@ public class Main3Activity extends AppCompatActivity {
         if ((str != null) && (str.length() > 0)) {
             result = str.substring(0, str.length() - 1);
         }
-        Toast.makeText(this, "value is " + result, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "value is " + result, Toast.LENGTH_SHORT).show();
         return result;
     }
 
@@ -223,22 +240,8 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //
-//              https://stackoverflow.com/questions/1454425/reference-javax-script-scriptengine-in-android-or-evaluate-a-javascript-expressi
-                Context rhino = Context.enter();
-                
-//              turn off optimization to work with android
-                rhino.setOptimizationLevel(-1);
-
-                String evaluation = stringContainer;
-
-                try {
-                    Scriptable scope = rhino.initStandardObjects();
-                    String result = rhino.evaluateString(scope, evaluation, "JavaScript", 1, null).toString();
-                    textView_output.setText(result);
-                } finally {
-                    Context.exit();
-                }
-//
+            String result = mathStringToNumbers(stringContainer);
+            textView_output.setText(result);
             }
         });
     }
