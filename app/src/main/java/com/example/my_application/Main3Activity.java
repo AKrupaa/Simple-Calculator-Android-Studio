@@ -3,11 +3,16 @@ package com.example.my_application;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Scriptable;
+
+import javax.script.ScriptEngineManager;
+
 
 public class Main3Activity extends AppCompatActivity {
 
@@ -217,8 +222,23 @@ public class Main3Activity extends AppCompatActivity {
         btn_equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textView_output.setText(stringContainer);
+//
+//              https://stackoverflow.com/questions/1454425/reference-javax-script-scriptengine-in-android-or-evaluate-a-javascript-expressi
+                Context rhino = Context.enter();
+                
+//              turn off optimization to work with android
+                rhino.setOptimizationLevel(-1);
 
+                String evaluation = stringContainer;
+
+                try {
+                    Scriptable scope = rhino.initStandardObjects();
+                    String result = rhino.evaluateString(scope, evaluation, "JavaScript", 1, null).toString();
+                    textView_output.setText(result);
+                } finally {
+                    Context.exit();
+                }
+//
             }
         });
     }
