@@ -12,7 +12,9 @@
         android:text="@string/input"
         android:background="@color/colorBlack"
         android:textColor="@color/colorWhite"
+        android:minHeight="@dimen/sixtyDp"
         />
+
     <TextView
         android:id="@+id/output"
         android:layout_width="match_parent"
