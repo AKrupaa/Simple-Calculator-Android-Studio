@@ -20,5 +20,6 @@
     <string name="zero">0</string>
     <string name="dot">.</string>
     <string name="equals">=</string>
-    <string name="output">Waiting</string>
+    <string name="input">INPUT</string>
+    <string name="output">OUTPUT</string>
 </resources>

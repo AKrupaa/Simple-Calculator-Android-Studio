@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="5"
+        android:columnCount="4"
+        >
+
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:text="@string/ac"
+            android:id="@+id/ac"
+            android:layout_columnWeight="1"
+            ></Button>
+        <Button
+            android:layout_width="60dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:text="@string/del"
+            android:id="@+id/del"
+            android:layout_columnWeight="1"
+            ></Button>
+        <Button
+            android:layout_width="60dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:text="@string/percent"
+            android:id="@+id/percent"
+            android:layout_columnWeight="1"
+            ></Button>
+        <Button
+            android:layout_width="60dp"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:text="@string/division"
+            android:id="@+id/division"
+            android:layout_columnWeight="1"
+            ></Button>
+    </GridLayout>
+</RelativeLayout>
