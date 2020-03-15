@@ -2,6 +2,8 @@ package com.example.my_application;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -69,9 +71,14 @@ public class MainActivity extends AppCompatActivity {
 //    wyskoczy tekst kliknales przycisk AC
     public void clickHandler(View view) {
         Date date = new Date();
-
+//        ustawia text("argument") do textView: output
         textView_output.setText("Dzis jest "+ date.toString());
 
+//        wyskakuje powiadomienie u dolu ekranu telefonu
         Toast.makeText(this,"Kliknales przycisk AC", Toast.LENGTH_LONG).show();
+
+//        Navigate from MainActivity to Main3Activity
+        Intent intent = new Intent(MainActivity.this, Main3Activity.class);
+        startActivity(intent);
     }
 }
