@@ -8,12 +8,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:text="@string/input" />
+        android:gravity="end"
+        android:text="@string/input"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        />
     <TextView
         android:id="@+id/output"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="50sp"
         android:gravity="end"
-        android:text="213123123123" />
+        android:text="@string/output"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        />
 </LinearLayout>
