@@ -22,40 +22,33 @@ public class MainActivity extends AppCompatActivity {
     TextView textView_output;
 //    utowrzenie przycisku aby wystartowal Kalkulator
     Button launchCalculator;
+    Button exitProgram;
 
     //    lifecycle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        pisanie logów w Logcat
-        Log.i(TAG, "onCreate CALLED");
 
-//        zrob referencje do textView_output elementu o id: output;
         textView_output = findViewById(R.id.output);
         launchCalculator = findViewById(R.id.l_turnOnTheCalculator);
+        exitProgram = findViewById(R.id.exit);
 
         launchCalculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Date date = new Date();
-//              ustawia text("argument") do textView: output
-                textView_output.setText("Dzis jest "+ date.toString());
-
-
-//              powiadomienie na dole ekranu :)
-                Context context = getApplicationContext();
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-
-
 //              Navigate from MainActivity to Main3Activity
                 Intent intent = new Intent(MainActivity.this, Kalkulator.class);
                 startActivity(intent);
+            }
+        });
+
+        exitProgram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
             }
         });
     }

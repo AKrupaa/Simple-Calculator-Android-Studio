@@ -20,9 +20,8 @@ public class Kalkulator extends AppCompatActivity {
 
     String stringContainer = "";
 
-
+    //      powiadomienie na dole ekranu :)
     void makeToast(String typeWhatYouWantToSeeAsAString) {
-//      powiadomienie na dole ekranu :)
         android.content.Context context = getApplicationContext();
         CharSequence text = typeWhatYouWantToSeeAsAString;
         int duration = Toast.LENGTH_SHORT;
@@ -31,6 +30,7 @@ public class Kalkulator extends AppCompatActivity {
         toast.show();
     }
 
+//    ---------------------------------------------------the most important fragment of code-----------------------------------------------------
     public String mathStringToNumbers(String evaluation) {
 //      https://stackoverflow.com/questions/1454425/reference-javax-script-scriptengine-in-android-or-evaluate-a-javascript-expressi
         Context rhino = Context.enter();
@@ -61,6 +61,7 @@ public class Kalkulator extends AppCompatActivity {
         result = rhino.evaluateString(scope, evaluation , "JavaScript", 1, null).toString();
         return result;
     }
+//    ---------------------------------------------------the most important fragment of code-----------------------------------------------------
 
     public Boolean theLastOfUs(String s) {
         if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("-") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") )
