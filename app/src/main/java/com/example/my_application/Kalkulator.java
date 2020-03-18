@@ -12,7 +12,7 @@ import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
 
-public class Main3Activity extends AppCompatActivity {
+public class Kalkulator extends AppCompatActivity {
 
     Button btn_ac, btn_del, btn_percent, btn_division, btn_seven, btn_eight, btn_nine, btn_multiply, btn_four, btn_five, btn_six, btn_subtraction;
     Button btn_one, btn_two, btn_three, btn_addition, btn_swap, btn_zero, btn_dot, btn_equals;
@@ -20,6 +20,16 @@ public class Main3Activity extends AppCompatActivity {
 
     String stringContainer = "";
 
+
+    void makeToast(String typeWhatYouWantToSeeAsAString) {
+//                    powiadomienie na dole ekranu :)
+            android.content.Context context = getApplicationContext();
+            CharSequence text = typeWhatYouWantToSeeAsAString;
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+    }
 
     public String mathStringToNumbers(String evaluation) {
 //      https://stackoverflow.com/questions/1454425/reference-javax-script-scriptengine-in-android-or-evaluate-a-javascript-expressi
@@ -33,8 +43,18 @@ public class Main3Activity extends AppCompatActivity {
         Scriptable scope = rhino.initStandardObjects();
 
         evaluation = evaluation.replaceAll("x", "*");
-        result = rhino.evaluateString(scope, evaluation, "JavaScript", 1, null).toString();
-//      textView_output.setText(result);
+
+        if(evaluation.endsWith("/") || evaluation.endsWith("*") || evaluation.endsWith("-") || evaluation.endsWith("+")) {
+
+
+//            makeToast("Warunek spelniony");
+            evaluation = removeLastCharacter(evaluation);
+            textView_input = replaceTheContentOfTextView(textView_input, evaluation);
+            setStringContainer(evaluation);
+        }
+
+//            makeToast("Warunek nie spelniony");
+        result = rhino.evaluateString(scope, evaluation , "JavaScript", 1, null).toString();
 
         return result;
     }
@@ -86,6 +106,15 @@ public class Main3Activity extends AppCompatActivity {
         }
 //        Toast.makeText(this, "value is " + result, Toast.LENGTH_SHORT).show();
         return result;
+    }
+
+    public TextView replaceTheContentOfTextView(TextView textView, String text_to_replace) {
+        textView.setText(text_to_replace);
+        return textView;
+    }
+
+    public void setStringContainer(String stringContainer) {
+        this.stringContainer = stringContainer;
     }
 
     @Override

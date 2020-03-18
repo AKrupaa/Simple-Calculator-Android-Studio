@@ -1,7 +1,8 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!--  .NoActionBar wyłącz nakładkę z TWOJA APLIKACJA  -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!--    to jest kolor górnej części aplikacji -> My_Application    -->
         <item name="colorPrimary">@color/colorPrimary</item>

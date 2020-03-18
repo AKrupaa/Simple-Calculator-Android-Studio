@@ -22,4 +22,6 @@
     <string name="equals">=</string>
     <string name="input">INPUT</string>
     <string name="output">OUTPUT</string>
+    <string name="information">Kalkulator\nArkadiusz Krupiński\n\nAby rozpocząć kliknij ROZPOCZNIJ</string>
+    <string name="launchButton">ROZPOCZNIJ</string>
 </resources>

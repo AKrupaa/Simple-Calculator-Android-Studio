@@ -3,10 +3,12 @@ package com.example.my_application;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
 //    wypisywanie daty w elemncie TextView (android)
     TextView textView_output;
-
+//    utowrzenie przycisku aby wystartowal Kalkulator
+    Button launchCalculator;
 
     //    lifecycle
     @Override
@@ -30,6 +33,31 @@ public class MainActivity extends AppCompatActivity {
 
 //        zrob referencje do textView_output elementu o id: output;
         textView_output = findViewById(R.id.output);
+        launchCalculator = findViewById(R.id.l_turnOnTheCalculator);
+
+        launchCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Date date = new Date();
+//              ustawia text("argument") do textView: output
+                textView_output.setText("Dzis jest "+ date.toString());
+
+
+//              powiadomienie na dole ekranu :)
+                Context context = getApplicationContext();
+                CharSequence text = "Hello toast!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
+
+//              Navigate from MainActivity to Main3Activity
+                Intent intent = new Intent(MainActivity.this, Kalkulator.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //    lifecycle
@@ -66,19 +94,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-//    wyskoczy tekst kliknales przycisk AC
-    public void clickHandler(View view) {
-        Date date = new Date();
-//        ustawia text("argument") do textView: output
-        textView_output.setText("Dzis jest "+ date.toString());
-
-//        wyskakuje powiadomienie u dolu ekranu telefonu
-        Toast.makeText(this,"Kliknales przycisk AC", Toast.LENGTH_LONG).show();
-
-//        Navigate from MainActivity to Main3Activity
-        Intent intent = new Intent(MainActivity.this, Main3Activity.class);
-        startActivity(intent);
     }
 }
