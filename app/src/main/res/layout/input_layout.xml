@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:gravity="end"
-        android:text="@string/input"
         android:background="@color/colorBlack"
         android:textColor="@color/colorWhite"
         android:minHeight="@dimen/sixtyDp"
@@ -21,7 +20,6 @@
         android:layout_height="wrap_content"
         android:textSize="50sp"
         android:gravity="end"
-        android:text="@string/output"
         android:background="@color/colorBlack"
         android:textColor="@color/colorWhite"
         />

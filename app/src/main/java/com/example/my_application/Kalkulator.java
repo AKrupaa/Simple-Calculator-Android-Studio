@@ -22,13 +22,13 @@ public class Kalkulator extends AppCompatActivity {
 
 
     void makeToast(String typeWhatYouWantToSeeAsAString) {
-//                    powiadomienie na dole ekranu :)
-            android.content.Context context = getApplicationContext();
-            CharSequence text = typeWhatYouWantToSeeAsAString;
-            int duration = Toast.LENGTH_SHORT;
+//      powiadomienie na dole ekranu :)
+        android.content.Context context = getApplicationContext();
+        CharSequence text = typeWhatYouWantToSeeAsAString;
+        int duration = Toast.LENGTH_SHORT;
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
     public String mathStringToNumbers(String evaluation) {
@@ -37,34 +37,45 @@ public class Kalkulator extends AppCompatActivity {
 //      turn off optimization to work with android
         rhino.setOptimizationLevel(-1);
 
-//        String evaluation = stringContainer;
         String result;
-
         Scriptable scope = rhino.initStandardObjects();
 
-        evaluation = evaluation.replaceAll("x", "*");
-
-        for(int i = evaluation.length(); i>= 0; i--) {
-            if( evaluation.endsWith("/") || evaluation.endsWith("*") || evaluation.endsWith("-")
-                    || evaluation.endsWith("+") || evaluation.endsWith(".") || evaluation.endsWith("%") ) {
-    //            makeToast("Warunek spelniony");
-                evaluation = removeLastCharacter(evaluation);
-    //            podmienienie wartosci w layout INPUT
-                textView_input = replaceTheContentOfTextView(textView_input, evaluation);
-    //            podmienienie wartosci StringContainer na wartosc evaluation czyli bez znak / * - + itd.
-                setStringContainer(evaluation);
-            }
-        }
-
-//        wyskakiwal blad przy pustym znaku :) i po problemie.
+//        jeżeli nie ma wyrażenia matematycznego...
         if(evaluation.length() == 0)
             evaluation = "0";
 
+//        jeżeli 1 znak jest specjalny, ale dalej nie ma cyfr...
+        if((theLastOfUs(evaluation.substring(0,1))) && evaluation.length() == 1)
+            evaluation = "0";
 
+        evaluation = evaluation.replaceAll("x", "*");
+
+        if( theLastOfUs(evaluation) ) {
+            evaluation = removeLastCharacter(evaluation);
+//          podmienienie wartosci w layout INPUT
+            textView_input = replaceTheContentOfTextView(textView_input, evaluation);
+//          podmienienie wartosci StringContainer na wartosc evaluation czyli bez znak / * - + itd.
+            setStringContainer(evaluation);
+        }
 
         result = rhino.evaluateString(scope, evaluation , "JavaScript", 1, null).toString();
-
         return result;
+    }
+
+    public Boolean theLastOfUs(String s) {
+        if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("-") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") )
+            return true;
+        else
+            return false;
+    }
+
+    public Boolean minusFirstOfUs(String s) {
+        if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") )
+            return false;
+        if (s.endsWith("-"))
+            return true;
+
+        return false;
     }
 
     public void setButtons()
@@ -112,7 +123,6 @@ public class Kalkulator extends AppCompatActivity {
         if ((str != null) && (str.length() > 0)) {
             result = str.substring(0, str.length() - 1);
         }
-//        Toast.makeText(this, "value is " + result, Toast.LENGTH_SHORT).show();
         return result;
     }
 
@@ -123,6 +133,15 @@ public class Kalkulator extends AppCompatActivity {
 
     public void setStringContainer(String stringContainer) {
         this.stringContainer = stringContainer;
+    }
+
+    public void changeTheLastOfUsIfPrevious(Button button) {
+        if(theLastOfUs(stringContainer)){
+            stringContainer = removeLastCharacter(stringContainer);
+            textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+        }
+
+        stringContainer = addToStringContainer(button);
     }
 
     @Override
@@ -227,42 +246,42 @@ public class Kalkulator extends AppCompatActivity {
         btn_dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_dot);
+                changeTheLastOfUsIfPrevious(btn_dot);
             }
         });
 
         btn_percent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_percent);
+                changeTheLastOfUsIfPrevious(btn_percent);
             }
         });
 
         btn_division.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_division);
+                changeTheLastOfUsIfPrevious(btn_division);
             }
         });
 
         btn_multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_multiply);
+                changeTheLastOfUsIfPrevious(btn_multiply);
             }
         });
 
         btn_subtraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_subtraction);
+                changeTheLastOfUsIfPrevious(btn_subtraction);
             }
         });
 
         btn_addition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_addition);
+                changeTheLastOfUsIfPrevious(btn_addition);
             }
         });
 
@@ -270,7 +289,7 @@ public class Kalkulator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 stringContainer = removeLastCharacter(stringContainer);
-                textView_input.setText(stringContainer);
+                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
             }
         });
 
@@ -280,10 +299,8 @@ public class Kalkulator extends AppCompatActivity {
             public void onClick(View v) {
 //
             String result = mathStringToNumbers(stringContainer);
-            textView_output.setText(result);
+            textView_output = replaceTheContentOfTextView(textView_output, result);
             }
         });
-
-//        makeToast(stringContainer);
     }
 }
