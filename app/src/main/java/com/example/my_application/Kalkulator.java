@@ -44,16 +44,24 @@ public class Kalkulator extends AppCompatActivity {
 
         evaluation = evaluation.replaceAll("x", "*");
 
-        if(evaluation.endsWith("/") || evaluation.endsWith("*") || evaluation.endsWith("-") || evaluation.endsWith("+")) {
-
-
-//            makeToast("Warunek spelniony");
-            evaluation = removeLastCharacter(evaluation);
-            textView_input = replaceTheContentOfTextView(textView_input, evaluation);
-            setStringContainer(evaluation);
+        for(int i = evaluation.length(); i>= 0; i--) {
+            if( evaluation.endsWith("/") || evaluation.endsWith("*") || evaluation.endsWith("-")
+                    || evaluation.endsWith("+") || evaluation.endsWith(".") || evaluation.endsWith("%") ) {
+    //            makeToast("Warunek spelniony");
+                evaluation = removeLastCharacter(evaluation);
+    //            podmienienie wartosci w layout INPUT
+                textView_input = replaceTheContentOfTextView(textView_input, evaluation);
+    //            podmienienie wartosci StringContainer na wartosc evaluation czyli bez znak / * - + itd.
+                setStringContainer(evaluation);
+            }
         }
 
-//            makeToast("Warunek nie spelniony");
+//        wyskakiwal blad przy pustym znaku :) i po problemie.
+        if(evaluation.length() == 0)
+            evaluation = "0";
+
+
+
         result = rhino.evaluateString(scope, evaluation , "JavaScript", 1, null).toString();
 
         return result;
@@ -125,6 +133,8 @@ public class Kalkulator extends AppCompatActivity {
 //        ustaw activity_main3
         setContentView(R.layout.activity_main3);
 
+
+//        makeToast(stringContainer);
 //        findViewById buttons
         setButtons();
 //        findViewById buttons
@@ -273,5 +283,7 @@ public class Kalkulator extends AppCompatActivity {
             textView_output.setText(result);
             }
         });
+
+//        makeToast(stringContainer);
     }
 }
