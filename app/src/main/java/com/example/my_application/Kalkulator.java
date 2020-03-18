@@ -15,9 +15,10 @@ import org.mozilla.javascript.Scriptable;
 public class Kalkulator extends AppCompatActivity {
 
     Button btn_ac, btn_del, btn_percent, btn_division, btn_seven, btn_eight, btn_nine, btn_multiply, btn_four, btn_five, btn_six, btn_subtraction;
-    Button btn_one, btn_two, btn_three, btn_addition, btn_swap, btn_zero, btn_dot, btn_equals;
+    Button btn_one, btn_two, btn_three, btn_addition, btn_swap, btn_zero, btn_dot, btn_equals, btn_opposite, btn_openBracket, btn_closeBracket;
     TextView textView_input, textView_output;
 
+//    tu przechowuje wynik działania
     String stringContainer = "";
 
     //      powiadomienie na dole ekranu :)
@@ -32,39 +33,116 @@ public class Kalkulator extends AppCompatActivity {
 
 //    ---------------------------------------------------the most important fragment of code-----------------------------------------------------
     public String mathStringToNumbers(String evaluation) {
+        String result;
+
+//        jeżeli nie ma wyrażenia matematycznego...
+        if( evaluation.length() == 0 )
+            evaluation = "0";
+
+//        jeżeli pierwszy znak jest specjalny, ale dalej nie ma cyfr...
+        if ( (theLastOfUs(evaluation.substring(0,1))) && evaluation.length() == 1 ) {
+            evaluation = "0";
+            makeToast("To nie jest wyrażenie matematyczne");
+        }
+
+//        jezeli na koncu jest znak specjalny
+        if( theLastOfUs(evaluation) )
+            evaluation = removeLastCharacter(evaluation);
+
+//        na poczatku jest znak specjalny inny niz minus => jest to blad uzytkownika
+        if ( minusTheLastOfUs(evaluation.substring(0,1)) ) {
+            evaluation = "0";
+            makeToast("Zacząłeś znakiem specjalnym");
+        }
+
+//        sprawdza liczbe ( ) i je uzupelnia
+        evaluation = checkBrackets(evaluation);
+
+        evaluation = evaluation.replaceAll("x", "*");
+
 //      https://stackoverflow.com/questions/1454425/reference-javax-script-scriptengine-in-android-or-evaluate-a-javascript-expressi
         Context rhino = Context.enter();
 //      turn off optimization to work with android
         rhino.setOptimizationLevel(-1);
-
-        String result;
         Scriptable scope = rhino.initStandardObjects();
 
-//        jeżeli nie ma wyrażenia matematycznego...
-        if(evaluation.length() == 0)
-            evaluation = "0";
-
-//        jeżeli 1 znak jest specjalny, ale dalej nie ma cyfr...
-        if((theLastOfUs(evaluation.substring(0,1))) && evaluation.length() == 1)
-            evaluation = "0";
-
-        evaluation = evaluation.replaceAll("x", "*");
-
-        if( theLastOfUs(evaluation) ) {
-            evaluation = removeLastCharacter(evaluation);
-//          podmienienie wartosci w layout INPUT
-            textView_input = replaceTheContentOfTextView(textView_input, evaluation);
-//          podmienienie wartosci StringContainer na wartosc evaluation czyli bez znak / * - + itd.
-            setStringContainer(evaluation);
-        }
-
         result = rhino.evaluateString(scope, evaluation , "JavaScript", 1, null).toString();
+
         return result;
     }
 //    ---------------------------------------------------the most important fragment of code-----------------------------------------------------
 
+    public String checkBrackets(String string) {
+        String result = "";
+        Integer valuesOfBrackets = 0;
+
+        for(int i = 0; i < string.length(); i ++) {
+            if (string.charAt(i) == '(')
+                valuesOfBrackets ++;
+
+            if (string.charAt(i) == ')')
+                valuesOfBrackets--;
+        }
+
+        if (valuesOfBrackets > 0) {
+            for (int i = 0; i < valuesOfBrackets; i++) {
+                string = string + ")";
+            }
+        }
+
+        if (valuesOfBrackets < 0) {
+            for (int i = valuesOfBrackets; i < 0; i++) {
+                string = "(" + string;
+            }
+        }
+
+//      działa pełnosprytnie
+        for(int i = 0; i < string.length(); i++) {
+            if(string.charAt(i) == '(' && string.charAt(i+1) ==')' && i+1 != string.length()) {
+                result = "0";
+                makeToast("Oszukujesz z nawiasami");
+                return result;
+            }
+//            if(string.charAt(i) == ')' && string.charAt(i+1) =='(' && i+1 != string.length()) {
+//                result = "0";
+//                makeToast("Oszukujesz z nawiasami");
+//                return result;
+//            }
+        }
+
+        result = string;
+        return result;
+    }
+
+    public String changeValueOfStringToOpposite(String string) {
+        String result = "";
+
+//      jeżeli nie ma wyrażenia matematycznego...
+        if(string.length() == 0)
+            string = "0";
+
+//        jeżeli 1 znak jest specjalny, ale dalej nie ma cyfr...
+        if(theLastOfUs(string.substring(0,1)) && string.length() == 1)
+            string = "0";
+
+//        jeżeli na końcu jest znak specjalny
+        if(theLastOfUs(string) )
+            string = removeLastCharacter(string);
+
+        result = "-(" + string + ")";
+
+        return result;
+    }
+
     public Boolean theLastOfUs(String s) {
         if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("-") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") )
+            return true;
+        else
+            return false;
+    }
+
+    public Boolean minusTheLastOfUs(String s) {
+        if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") )
             return true;
         else
             return false;
@@ -93,6 +171,9 @@ public class Kalkulator extends AppCompatActivity {
         this.btn_zero = findViewById(R.id.zero);
         this.btn_dot = findViewById(R.id.dot);
         this.btn_equals = findViewById(R.id.equals);
+        this.btn_opposite = findViewById(R.id.oppositeValue);
+        this.btn_openBracket = findViewById(R.id.openBracket);
+        this.btn_closeBracket = findViewById(R.id.closeBracket);
     }
 
     public void setTextView()
@@ -285,13 +366,36 @@ public class Kalkulator extends AppCompatActivity {
             }
         });
 
+        btn_openBracket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringContainer = addToStringContainer(btn_openBracket);
+            }
+        });
+
+        btn_closeBracket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringContainer = addToStringContainer(btn_closeBracket);
+            }
+        });
+
+//        zmiana znaku
+        btn_opposite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringContainer = changeValueOfStringToOpposite(stringContainer);
+                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+            }
+        });
+
 //        równa się?
         btn_equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//
-            String result = mathStringToNumbers(stringContainer);
-            textView_output = replaceTheContentOfTextView(textView_output, result);
+                String result = mathStringToNumbers(stringContainer);
+                textView_output = replaceTheContentOfTextView(textView_output, result);
+                setStringContainer(result);
             }
         });
     }
