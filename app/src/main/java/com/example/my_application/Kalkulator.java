@@ -69,15 +69,6 @@ public class Kalkulator extends AppCompatActivity {
             return false;
     }
 
-    public Boolean minusFirstOfUs(String s) {
-        if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") )
-            return false;
-        if (s.endsWith("-"))
-            return true;
-
-        return false;
-    }
-
     public void setButtons()
 //    ustawia wszystkie przyciski, uzywajac findViewById()
     {
