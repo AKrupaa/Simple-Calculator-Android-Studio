@@ -25,7 +25,16 @@
     <string name="information">\n\nKalkulator\n\nArkadiusz Krupiński\n\nAby rozpocząć kliknij ROZPOCZNIJ</string>
     <string name="launchButton">ROZPOCZNIJ</string>
     <string name="exit">Wyjdź z programu</string>
+
     <string name="oppositeValue">+/-</string>
     <string name="openBracket">(</string>
     <string name="closeBracket">)</string>
+    <string name="ln">ln</string>
+    <string name="log">log</string>
+    <string name="e">e</string>
+    <string name="exp">x^y</string>
+    <string name="cos">cos</string>
+    <string name="sin">sin</string>
+    <string name="tan">tan</string>
+
 </resources>

@@ -4,25 +4,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.mariuszgromada.math.mxparser.Expression;
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.Scriptable;
 
 
 public class Kalkulator extends AppCompatActivity {
 
-    Button btn_ac, btn_del, btn_percent, btn_division, btn_seven, btn_eight, btn_nine, btn_multiply, btn_four, btn_five, btn_six, btn_subtraction;
-    Button btn_one, btn_two, btn_three, btn_addition, btn_swap, btn_zero, btn_dot, btn_equals, btn_opposite, btn_openBracket, btn_closeBracket;
-    TextView textView_input, textView_output;
+    private Button btn_ac, btn_del, btn_percent, btn_division, btn_seven, btn_eight, btn_nine, btn_multiply, btn_four, btn_five, btn_six, btn_subtraction;
+    private Button btn_one, btn_two, btn_three, btn_addition, btn_zero, btn_dot, btn_equals, btn_openBracket, btn_closeBracket;
+    private Button btn_ln, btn_sin, btn_cos, btn_tan, btn_log, btn_exp, btn_opposite;
+    private TextView textView_input;
 
 //    tu przechowuje wynik działania
-    String stringContainer = "";
+    private String stringContainer = "";
 
     //      powiadomienie na dole ekranu :)
     void makeToast(String typeWhatYouWantToSeeAsAString) {
@@ -43,10 +41,13 @@ public class Kalkulator extends AppCompatActivity {
 
 //        Expression e = new Expression("2^3*2");
         evaluation = evaluation.replaceAll("x", "*");
+//        reszta z dzielenia > operator #
         evaluation = evaluation.replaceAll("%", "#");
+//        bo ktos zapomni w logX(Y)
+        evaluation = evaluation.replaceAll("X", "10");
         Expression e = new Expression(evaluation);
-        Double abc = e.calculate();
-        result = abc.toString();
+        double abc = e.calculate();
+        result = Double.toString(abc);
 
 ////        jeżeli nie ma wyrażenia matematycznego...
 //        if( evaluation.length() == 0 )
@@ -78,9 +79,11 @@ public class Kalkulator extends AppCompatActivity {
     }
 //    ---------------------------------------------------the most important fragment of code-----------------------------------------------------
 
+    /*
+
     public String checkBrackets(String string) {
         String result = "";
-        Integer valuesOfBrackets = 0;
+        int valuesOfBrackets = 0;
 
         for(int i = 0; i < string.length(); i ++) {
             if (string.charAt(i) == '(')
@@ -91,15 +94,18 @@ public class Kalkulator extends AppCompatActivity {
         }
 
         if (valuesOfBrackets > 0) {
-            for (int i = 0; i < valuesOfBrackets; i++) {
-                string = string + ")";
-            }
+            StringBuilder stringBuilder = new StringBuilder(string);
+            for (int i = 0; i < valuesOfBrackets; i++)
+                stringBuilder.append(")");
+            string = stringBuilder.toString();
         }
 
         if (valuesOfBrackets < 0) {
+            StringBuilder stringBuilder = new StringBuilder(string);
             for (int i = valuesOfBrackets; i < 0; i++) {
-                string = "(" + string;
+                stringBuilder.insert(0, "(");
             }
+            string = stringBuilder.toString();
         }
 
 //      działa pełnosprytnie
@@ -115,8 +121,10 @@ public class Kalkulator extends AppCompatActivity {
         return result;
     }
 
+    */
+
     public String changeValueOfStringToOpposite(String string) {
-        String result = "";
+        String result;
 
 //      jeżeli nie ma wyrażenia matematycznego...
         if(string.length() == 0)
@@ -136,21 +144,22 @@ public class Kalkulator extends AppCompatActivity {
     }
 
     public Boolean theLastOfUs(String s) {
-        if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("-") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") || s.endsWith(")") )
+        if ( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("-") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") || s.endsWith(")") ) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
-    public Boolean minusTheLastOfUs(String s) {
-        if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") )
-            return true;
-        else
-            return false;
-    }
+//    public Boolean minusTheLastOfUs(String s) {
+//        if ( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") ) {
+//            return true;
+//        } else
+//            return false;
+//    }
 
+    //    ustawia wszystkie przyciski, uzywajac findViewById()
     public void setButtons()
-//    ustawia wszystkie przyciski, uzywajac findViewById()
     {
         this.btn_ac = findViewById(R.id.ac);
         this.btn_del = findViewById(R.id.del);
@@ -168,20 +177,26 @@ public class Kalkulator extends AppCompatActivity {
         this.btn_two = findViewById(R.id.two);
         this.btn_three = findViewById(R.id.three);
         this.btn_addition = findViewById(R.id.addition);
-        this.btn_swap = findViewById(R.id.swap);
+//        this.btn_swap = findViewById(R.id.swap);
         this.btn_zero = findViewById(R.id.zero);
         this.btn_dot = findViewById(R.id.dot);
         this.btn_equals = findViewById(R.id.equals);
         this.btn_opposite = findViewById(R.id.oppositeValue);
         this.btn_openBracket = findViewById(R.id.openBracket);
         this.btn_closeBracket = findViewById(R.id.closeBracket);
+        this.btn_ln = findViewById(R.id.ln);
+        this.btn_sin = findViewById(R.id.sin);
+        this.btn_cos = findViewById(R.id.cos);
+        this.btn_tan = findViewById(R.id.tan);
+        this.btn_log = findViewById(R.id.log);
+        this.btn_exp = findViewById(R.id.exp);
     }
 
     public void setTextView()
 //    ustawia wszystkie textViews, uzywajac findViewById()
     {
         textView_input = findViewById(R.id.input);
-        textView_output = findViewById(R.id.output);
+//        textView_output = findViewById(R.id.output);
     }
 
     public String addToStringContainer(Button button)
@@ -233,7 +248,6 @@ public class Kalkulator extends AppCompatActivity {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         stringContainer = savedInstanceState.getString("stringContainer");
-//        makeToast(stringContainer);
         setStringContainer(stringContainer);
         textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
     }
@@ -263,7 +277,6 @@ public class Kalkulator extends AppCompatActivity {
 
 //                to jest w androidzie
                 textView_input.setText("");
-                textView_output.setText("");
 
 //                to jest w javce => class String
                 stringContainer = "";
@@ -404,6 +417,59 @@ public class Kalkulator extends AppCompatActivity {
             }
         });
 
+        btn_ln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringContainer = addToStringContainer(btn_ln);
+                setStringContainer(stringContainer+"(");
+                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+            }
+        });
+
+        btn_sin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringContainer = addToStringContainer(btn_sin);
+                setStringContainer(stringContainer+"(");
+                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+            }
+        });
+
+        btn_cos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringContainer = addToStringContainer(btn_cos);
+                setStringContainer(stringContainer+"(");
+                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+            }
+        });
+
+        btn_tan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringContainer = addToStringContainer(btn_tan);
+                setStringContainer(stringContainer+"(");
+                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+            }
+        });
+
+        btn_log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringContainer = addToStringContainer(btn_log);
+                setStringContainer(stringContainer+"X(");
+                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+            }
+        });
+
+        btn_exp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setStringContainer(stringContainer+"^(");
+                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+            }
+        });
+
 //        zmiana znaku
         btn_opposite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -422,10 +488,11 @@ public class Kalkulator extends AppCompatActivity {
                 String result = mathStringToNumbers(stringContainer);
                 int isNaN = result.compareTo(NaN_String);
                 if(isNaN == 0) {
+                    makeToast("Not a number");
                     makeToast("Sprawdź składnie wyrażenia!");
                 } else{
-                    textView_output = replaceTheContentOfTextView(textView_output, result);
-                    setStringContainer(result); 
+                    textView_input = replaceTheContentOfTextView(textView_input, result);
+                    setStringContainer(result);
                 }
             }
         });

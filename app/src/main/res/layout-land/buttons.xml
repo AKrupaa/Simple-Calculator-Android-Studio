@@ -13,14 +13,20 @@
         android:layout_alignParentBottom="true"
         >
 
-        <!--        GRID, aby zrobić klawiaturę        -->
-        <!--        GRID, ustaw rowCount, columnCount        -->
-        <!--        W danym layoucie dorzuc buttony      -->
-        <!--        RelativeLayout jest calkiem calkiem!      -->
+        <!--        DODANE JEDYNIE                              -->
+        <!--        android:minHeight="@dimen/buttonsHeight"    -->
+        <!--        COPY PASTE FROM buttons.xml                 -->
+
+
+        <!--        GRID, aby zrobić klawiaturę                 -->
+        <!--        GRID, ustaw rowCount, columnCount           -->
+        <!--        W danym layoucie dorzuc buttony             -->
+        <!--        RelativeLayout jest calkiem calkiem!        -->
 
         <!--                RZAD 0              -->
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="0"
             android:layout_column="0"
             android:text="@string/ln"
@@ -31,6 +37,7 @@
             />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="0"
             android:layout_column="1"
             android:text="@string/sin"
@@ -40,6 +47,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="0"
             android:layout_column="2"
             android:text="@string/cos"
@@ -49,6 +57,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="0"
             android:layout_column="3"
             android:text="@string/tan"
@@ -63,6 +72,7 @@
 
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="1"
             android:layout_column="0"
             android:text="@string/log"
@@ -72,6 +82,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="1"
             android:layout_column="1"
             android:text="@string/openBracket"
@@ -81,6 +92,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="1"
             android:layout_column="2"
             android:text="@string/closeBracket"
@@ -90,6 +102,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="1"
             android:layout_column="3"
             android:text="@string/oppositeValue"
@@ -103,6 +116,7 @@
 
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="2"
             android:layout_column="0"
             android:text="@string/ac"
@@ -112,6 +126,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="2"
             android:layout_column="1"
             android:text="@string/del"
@@ -121,6 +136,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="2"
             android:layout_column="2"
             android:text="@string/percent"
@@ -130,6 +146,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="2"
             android:layout_column="3"
             android:text="@string/division"
@@ -143,6 +160,7 @@
 
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="3"
             android:layout_column="0"
             android:text="@string/seven"
@@ -152,6 +170,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="3"
             android:layout_column="1"
             android:text="@string/eight"
@@ -161,6 +180,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="3"
             android:layout_column="2"
             android:text="@string/nine"
@@ -170,6 +190,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="3"
             android:layout_column="3"
             android:text="@string/multiply"
@@ -183,6 +204,7 @@
 
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="4"
             android:layout_column="0"
             android:text="@string/four"
@@ -192,6 +214,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="4"
             android:layout_column="1"
             android:text="@string/five"
@@ -201,6 +224,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="4"
             android:layout_column="2"
             android:text="@string/six"
@@ -210,6 +234,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="4"
             android:layout_column="3"
             android:text="@string/subtraction"
@@ -223,6 +248,7 @@
 
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="5"
             android:layout_column="0"
             android:text="@string/one"
@@ -232,6 +258,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="5"
             android:layout_column="1"
             android:text="@string/two"
@@ -241,6 +268,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="5"
             android:layout_column="2"
             android:text="@string/three"
@@ -250,6 +278,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="5"
             android:layout_column="3"
             android:text="@string/addition"
@@ -263,6 +292,7 @@
 
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="6"
             android:layout_column="0"
             android:text="@string/exp"
@@ -272,6 +302,7 @@
             android:background="@color/colorBlack" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="6"
             android:layout_column="1"
             android:text="@string/zero"
@@ -281,6 +312,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="6"
             android:layout_column="2"
             android:text="@string/dot"
@@ -290,6 +322,7 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:minHeight="@dimen/buttonsHeight"
             android:layout_row="6"
             android:layout_column="3"
             android:text="@string/equals"

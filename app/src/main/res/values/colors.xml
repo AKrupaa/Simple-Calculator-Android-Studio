@@ -9,4 +9,5 @@
     <color name="colorBlack">#000</color>
     <color name="colorWhite">#FFF</color>
     <color name="colorExitFaded">#c4aead</color>
+    <color name="colorFunctionalityFaded">#FF794F</color>
 </resources>

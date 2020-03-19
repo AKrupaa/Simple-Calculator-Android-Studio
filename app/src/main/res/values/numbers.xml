@@ -2,4 +2,5 @@
 <resources>
     <dimen name="sixtyFourDp">64dp</dimen>
     <dimen name="sixtyDp">60dp</dimen>
+    <dimen name="buttonsHeight">40dp</dimen>
 </resources>
