@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.mariuszgromada.math.mxparser.Expression;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
@@ -33,42 +34,45 @@ public class Kalkulator extends AppCompatActivity {
         toast.show();
     }
 
-//    ---------------------------------------------------the most important fragment of code-----------------------------------------------------
+    //    ---------------------------------------------------the most important fragment of code-----------------------------------------------------
     public String mathStringToNumbers(String evaluation) {
+
+//            implementation 'org.mariuszgromada.math:MathParser.org-mXparser:4.4.2'
+//            >> build.grade <<
         String result;
 
-//        jeżeli nie ma wyrażenia matematycznego...
-        if( evaluation.length() == 0 )
-            evaluation = "0";
-
-//        jeżeli pierwszy znak jest specjalny, ale dalej nie ma cyfr...
-        if ( (theLastOfUs(evaluation.substring(0,1))) && evaluation.length() == 1 ) {
-            evaluation = "0";
-            makeToast("To nie jest wyrażenie matematyczne");
-        }
-
-//        jezeli na koncu jest znak specjalny
-        if( theLastOfUs(evaluation) )
-            evaluation = removeLastCharacter(evaluation);
-
-//        na poczatku jest znak specjalny inny niz minus => jest to blad uzytkownika
-        if ( minusTheLastOfUs(evaluation.substring(0,1)) ) {
-            evaluation = "0";
-            makeToast("Zacząłeś znakiem specjalnym");
-        }
-
-//        sprawdza liczbe ( ) i je uzupelnia
-        evaluation = checkBrackets(evaluation);
-
+//        Expression e = new Expression("2^3*2");
         evaluation = evaluation.replaceAll("x", "*");
+        evaluation = evaluation.replaceAll("%", "#");
+        Expression e = new Expression(evaluation);
+        Double abc = e.calculate();
+        result = abc.toString();
 
-//      https://stackoverflow.com/questions/1454425/reference-javax-script-scriptengine-in-android-or-evaluate-a-javascript-expressi
-        Context rhino = Context.enter();
-//      turn off optimization to work with android
-        rhino.setOptimizationLevel(-1);
-        Scriptable scope = rhino.initStandardObjects();
+////        jeżeli nie ma wyrażenia matematycznego...
+//        if( evaluation.length() == 0 )
+//            evaluation = "0";
+//
+////        jeżeli pierwszy znak jest specjalny, ale dalej nie ma cyfr...
+//        if ( (theLastOfUs(evaluation.substring(0,1))) && evaluation.length() == 1 ) {
+//            evaluation = "0";
+//            makeToast("To nie jest wyrażenie matematyczne");
+//        }
+//
+////        jezeli na koncu jest znak specjalny
+//        if( theLastOfUs(evaluation) )
+//            evaluation = removeLastCharacter(evaluation);
+//
+////        na poczatku jest znak specjalny inny niz minus => jest to blad uzytkownika
+//        if ( minusTheLastOfUs(evaluation.substring(0,1)) ) {
+//            evaluation = "0";
+//            makeToast("Zacząłeś znakiem specjalnym");
+//        }
+//
+////        sprawdza liczbe ( ) i je uzupelnia
+//        evaluation = checkBrackets(evaluation);
+//
+//        evaluation = evaluation.replaceAll("x", "*");
 
-        result = rhino.evaluateString(scope, evaluation , "JavaScript", 1, null).toString();
 
         return result;
     }
@@ -413,9 +417,16 @@ public class Kalkulator extends AppCompatActivity {
         btn_equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String NaN_String = "NaN";
+
                 String result = mathStringToNumbers(stringContainer);
-                textView_output = replaceTheContentOfTextView(textView_output, result);
-                setStringContainer(result);
+                int isNaN = result.compareTo(NaN_String);
+                if(isNaN == 0) {
+                    makeToast("Sprawdź składnie wyrażenia!");
+                } else{
+                    textView_output = replaceTheContentOfTextView(textView_output, result);
+                    setStringContainer(result);
+                }
             }
         });
     }
