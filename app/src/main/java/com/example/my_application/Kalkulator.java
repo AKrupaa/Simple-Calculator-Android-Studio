@@ -1,8 +1,10 @@
 package com.example.my_application;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -211,6 +213,29 @@ public class Kalkulator extends AppCompatActivity {
 
         stringContainer = addToStringContainer(button);
     }
+
+//   --------------------------------------------------- przechowywanie info przy ROTACJI ---------------------------------------------------
+//      https://stackoverflow.com/questions/151777/how-to-save-an-activity-state-using-save-instance-state?page=1&tab=votes#tab-top
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+        outState.putString("stringContainer", stringContainer);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        stringContainer = savedInstanceState.getString("stringContainer");
+//        makeToast(stringContainer);
+        setStringContainer(stringContainer);
+        textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+    }
+//      https://stackoverflow.com/questions/151777/how-to-save-an-activity-state-using-save-instance-state?page=1&tab=votes#tab-top
+//    --------------------------------------------------- przechowywanie info przy ROTACJI ---------------------------------------------------
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
