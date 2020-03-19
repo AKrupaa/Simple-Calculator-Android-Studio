@@ -425,7 +425,7 @@ public class Kalkulator extends AppCompatActivity {
                     makeToast("Sprawdź składnie wyrażenia!");
                 } else{
                     textView_output = replaceTheContentOfTextView(textView_output, result);
-                    setStringContainer(result);
+                    setStringContainer(result); 
                 }
             }
         });
