@@ -103,11 +103,6 @@ public class Kalkulator extends AppCompatActivity {
                 makeToast("Oszukujesz z nawiasami");
                 return result;
             }
-//            if(string.charAt(i) == ')' && string.charAt(i+1) =='(' && i+1 != string.length()) {
-//                result = "0";
-//                makeToast("Oszukujesz z nawiasami");
-//                return result;
-//            }
         }
 
         result = string;
@@ -135,7 +130,7 @@ public class Kalkulator extends AppCompatActivity {
     }
 
     public Boolean theLastOfUs(String s) {
-        if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("-") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") )
+        if( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("-") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") || s.endsWith(")") )
             return true;
         else
             return false;
