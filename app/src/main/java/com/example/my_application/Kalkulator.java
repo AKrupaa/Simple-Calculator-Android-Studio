@@ -15,14 +15,15 @@ import org.mariuszgromada.math.mxparser.Expression;
 
 public class Kalkulator extends AppCompatActivity {
 
-    private Button btn_ac, btn_del, btn_percent, btn_division, btn_seven, btn_eight, btn_nine, btn_multiply, btn_four, btn_five, btn_six, btn_subtraction;
+    private Button btn_ac, btn_del, btn_percent, btn_division, btn_seven, btn_eight, btn_nine;
+    private Button btn_multiply, btn_four, btn_five, btn_six, btn_subtraction;
     private Button btn_one, btn_two, btn_three, btn_addition, btn_zero, btn_dot, btn_equals, btn_openBracket, btn_closeBracket;
     private Button btn_ln, btn_sin, btn_cos, btn_tan, btn_log, btn_exp, btn_opposite;
     private TextView textView_input;
 
 //    tu przechowuje wynik działania
     private String stringContainer = "";
-//  info: (int) 1 => cal prosty, (int) 0 => cal zaawansowany
+//  info: (int) 1 => cal podstawowy, (int) 0 => cal rozszerzony/zaawansowany
     int chosenOne = 1;
 
     //      powiadomienie na dole ekranu :)
@@ -52,79 +53,10 @@ public class Kalkulator extends AppCompatActivity {
         double abc = e.calculate();
         result = Double.toString(abc);
 
-////        jeżeli nie ma wyrażenia matematycznego...
-//        if( evaluation.length() == 0 )
-//            evaluation = "0";
-//
-////        jeżeli pierwszy znak jest specjalny, ale dalej nie ma cyfr...
-//        if ( (theLastOfUs(evaluation.substring(0,1))) && evaluation.length() == 1 ) {
-//            evaluation = "0";
-//            makeToast("To nie jest wyrażenie matematyczne");
-//        }
-//
-////        jezeli na koncu jest znak specjalny
-//        if( theLastOfUs(evaluation) )
-//            evaluation = removeLastCharacter(evaluation);
-//
-////        na poczatku jest znak specjalny inny niz minus => jest to blad uzytkownika
-//        if ( minusTheLastOfUs(evaluation.substring(0,1)) ) {
-//            evaluation = "0";
-//            makeToast("Zacząłeś znakiem specjalnym");
-//        }
-//
-////        sprawdza liczbe ( ) i je uzupelnia
-//        evaluation = checkBrackets(evaluation);
-//
-//        evaluation = evaluation.replaceAll("x", "*");
-
-
         return result;
     }
 //    ---------------------------------------------------the most important fragment of code-----------------------------------------------------
 
-    /*
-
-    public String checkBrackets(String string) {
-        String result = "";
-        int valuesOfBrackets = 0;
-
-        for(int i = 0; i < string.length(); i ++) {
-            if (string.charAt(i) == '(')
-                valuesOfBrackets ++;
-
-            if (string.charAt(i) == ')')
-                valuesOfBrackets--;
-        }
-
-        if (valuesOfBrackets > 0) {
-            StringBuilder stringBuilder = new StringBuilder(string);
-            for (int i = 0; i < valuesOfBrackets; i++)
-                stringBuilder.append(")");
-            string = stringBuilder.toString();
-        }
-
-        if (valuesOfBrackets < 0) {
-            StringBuilder stringBuilder = new StringBuilder(string);
-            for (int i = valuesOfBrackets; i < 0; i++) {
-                stringBuilder.insert(0, "(");
-            }
-            string = stringBuilder.toString();
-        }
-
-//      działa pełnosprytnie
-        for(int i = 0; i < string.length(); i++) {
-            if(string.charAt(i) == '(' && string.charAt(i+1) ==')' && i+1 != string.length()) {
-                result = "0";
-                makeToast("Oszukujesz z nawiasami");
-                return result;
-            }
-        }
-
-        result = string;
-        return result;
-    }
-
-    */
 
     public String changeValueOfStringToOpposite(String string) {
         String result;
@@ -146,6 +78,8 @@ public class Kalkulator extends AppCompatActivity {
         return result;
     }
 
+    // sprawdza czy nie ma na końcu wyrażenia znaku
+    // zwraca (boolean) true, jeżeli wystąpił
     public Boolean theLastOfUs(String s) {
         if ( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("-") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") || s.endsWith(")") ) {
             return true;
@@ -154,13 +88,7 @@ public class Kalkulator extends AppCompatActivity {
         }
     }
 
-//    public Boolean minusTheLastOfUs(String s) {
-//        if ( s.endsWith("/") || s.endsWith("*") || s.endsWith("x") || s.endsWith("+") || s.endsWith(".") || s.endsWith("%") ) {
-//            return true;
-//        } else
-//            return false;
-//    }
-
+    // ustawia przyciski dostępne tylko w wersji zaawansowanej/rozszerzonej
     private void setAdvancedButtons()
     {
         this.btn_openBracket = findViewById(R.id.openBracket);
@@ -172,6 +100,7 @@ public class Kalkulator extends AppCompatActivity {
         this.btn_log = findViewById(R.id.log);
         this.btn_exp = findViewById(R.id.exp);
     }
+
     //    ustawia wszystkie przyciski, uzywajac findViewById()
     public void setButtons()
     {
@@ -191,7 +120,6 @@ public class Kalkulator extends AppCompatActivity {
         this.btn_two = findViewById(R.id.two);
         this.btn_three = findViewById(R.id.three);
         this.btn_addition = findViewById(R.id.addition);
-//        this.btn_swap = findViewById(R.id.swap);
         this.btn_zero = findViewById(R.id.zero);
         this.btn_dot = findViewById(R.id.dot);
         this.btn_equals = findViewById(R.id.equals);
@@ -207,15 +135,17 @@ public class Kalkulator extends AppCompatActivity {
 //        textView_output = findViewById(R.id.output);
     }
 
+    //    dodaje symbole do pojemnika na string
+    //    i aktualizuje od razu textView_input
     public String addToStringContainer(Button button)
-//    dodaje symbole do pojemnika na string
-//    i aktualizuje od razu textView_input
     {
         this.stringContainer = this.stringContainer + button.getText().toString();
         textView_input.setText(this.stringContainer);
         return this.stringContainer;
     }
 
+    // usuwa ostatni znak ze stringa
+    // zwraca string
     public String removeLastCharacter(String str) {
         String result = "";
         if ((str != null) && (str.length() > 0)) {
@@ -224,6 +154,7 @@ public class Kalkulator extends AppCompatActivity {
         return result;
     }
 
+    // podmienia zawartosc danego TextView
     public TextView replaceTheContentOfTextView(TextView textView, String text_to_replace) {
         textView.setText(text_to_replace);
         return textView;
@@ -233,6 +164,7 @@ public class Kalkulator extends AppCompatActivity {
         this.stringContainer = stringContainer;
     }
 
+    // zamienia znak specjalny, jezeli istnial na nowy (dopiero klikniety)
     public void changeTheLastOfUsIfPrevious(Button button) {
         if(theLastOfUs(stringContainer)){
             stringContainer = removeLastCharacter(stringContainer);
@@ -263,34 +195,31 @@ public class Kalkulator extends AppCompatActivity {
 //      https://stackoverflow.com/questions/151777/how-to-save-an-activity-state-using-save-instance-state?page=1&tab=votes#tab-top
 //    --------------------------------------------------- przechowywanie info przy ROTACJI ---------------------------------------------------
 
-
+    //    gdy stworzysz aplikację
     @Override
     protected void onCreate(Bundle savedInstanceState)
-//    gdy stworzysz aplikację
     {
         super.onCreate(savedInstanceState);
-        //odbieram info z poprzedniej aktywnosci :)))) ------------------------------------------------------------------
+        // odbieram info z poprzedniej (MainActivity) o tym, czy użytkownik kliknął wersje prostą czy rozszerzoną
+        // (int) 1 -> wersje podstawowa ||||  (int) 0 -> wersja rozszerzona
         Intent intent = getIntent();
         String message = intent.getStringExtra("isThisSimpleCalculator");
         chosenOne = Integer.valueOf(message);
 
-        //        ustaw activity_main3
+        // jezeli wybrano kalkulator zaawansowany (int) chosenOne == 0
+        // jezeli wybrano kalkulator prosty (int) chosenOne == 1
         if(chosenOne == 0)
-            setContentView(R.layout.activity_main3);            // ustaw zaawansowany kalkulator i zostaw kodzik
+            setContentView(R.layout.activity_main3);
         else
-            setContentView(R.layout.simple_calculator_layout);  // ustaw prosty i zostaw kodzik
+            setContentView(R.layout.simple_calculator_layout);
 
-//        makeToast(stringContainer);
-//        findViewById Buttons
         setButtons();
-//        findViewById TextView
         setTextView();
 
         btn_ac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                czyści stringContainer oraz wszystkie textViewsy
-
 //                to jest w androidzie
                 textView_input.setText("");
 
