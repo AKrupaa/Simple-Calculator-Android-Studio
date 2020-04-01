@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:rowCount="7"
+    android:columnCount="4"
+    android:layout_alignParentBottom="true"
     >
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:rowCount="7"
-        android:columnCount="4"
-        android:layout_alignParentBottom="true"
-        >
 
         <!--        DODANE JEDYNIE                              -->
         <!--        android:minHeight="@dimen/buttonsHeight"    -->
@@ -332,5 +326,4 @@
             android:textColor="@color/colorTextEquals" />
 
 
-    </GridLayout>
-</RelativeLayout>
+</GridLayout>
