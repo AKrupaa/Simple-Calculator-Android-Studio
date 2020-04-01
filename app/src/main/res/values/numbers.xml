@@ -3,4 +3,8 @@
     <dimen name="sixtyFourDp">64dp</dimen>
     <dimen name="sixtyDp">60dp</dimen>
     <dimen name="buttonsHeight">40dp</dimen>
+    <dimen name="buttonsHeightLarge">75dp</dimen>
+    <dimen name="autoSizeMaxTextSize">50sp</dimen>
+    <dimen name="autoSizeMinTextSize">10sp</dimen>
+    <dimen name="autoSizeStepGranularity">2sp</dimen>
 </resources>

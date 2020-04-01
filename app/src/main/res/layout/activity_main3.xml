@@ -10,9 +10,11 @@
     <include
         layout="@layout/input_layout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        ></include>
+        android:layout_height="100dp" />
+<!--    200 dp dla telefonu/tabletu na stałe - działa dla 5"+ , let go! -->
 
+<!-- po co Relative Layout? -->
+<!-- aby uzupelnic puste biale miejsce oraz klawiature przeniesc na dol! -->
 
 <RelativeLayout
     android:layout_width="wrap_content"
@@ -24,8 +26,7 @@
     <include
         layout="@layout/buttons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ></include>
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
 

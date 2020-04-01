@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBlack"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
 <!--    Auto Scale TextView Text to Fit within Bounds   -->
@@ -12,15 +13,17 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="12sp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeStepGranularity="2sp"
+        android:layout_height="wrap_content"
         android:id="@+id/input"
         android:gravity="end"
         android:background="@color/colorBlack"
         android:textColor="@color/colorWhite"
+
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
         />
 
 </LinearLayout>

@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:rowCount="7"
+    android:columnCount="4"
+    android:layout_alignParentBottom="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <!--        DODANE JEDYNIE                              -->
+    <!--        android:minHeight="@dimen/buttonsHeight"    -->
+    <!--        COPY PASTE FROM buttons.xml                 -->
+
+
+    <!--        GRID, aby zrobić klawiaturę                 -->
+    <!--        GRID, ustaw rowCount, columnCount           -->
+    <!--        W danym layoucie dorzuc buttony             -->
+    <!--        RelativeLayout jest calkiem calkiem!        -->
+
+    <!--                RZAD 0              -->
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:text="@string/ln"
+        android:id="@+id/ln"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionalityFaded"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:text="@string/sin"
+        android:id="@+id/sin"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionalityFaded"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:text="@string/cos"
+        android:id="@+id/cos"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionalityFaded"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="0"
+        android:layout_column="3"
+        android:text="@string/tan"
+        android:id="@+id/tan"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionalityFaded"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+
+
+    <!--                RZAD 1              -->
+
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:text="@string/log"
+        android:id="@+id/log"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionalityFaded"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:text="@string/openBracket"
+        android:id="@+id/openBracket"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="1"
+        android:layout_column="2"
+        android:text="@string/closeBracket"
+        android:id="@+id/closeBracket"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="1"
+        android:layout_column="3"
+        android:text="@string/oppositeValue"
+        android:id="@+id/oppositeValue"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionalityFaded"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+
+    <!--                RZAD 2              -->
+
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:text="@string/ac"
+        android:id="@+id/ac"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:text="@string/del"
+        android:id="@+id/del"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="2"
+        android:layout_column="2"
+        android:text="@string/percent"
+        android:id="@+id/percent"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="2"
+        android:layout_column="3"
+        android:text="@string/division"
+        android:id="@+id/division"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+
+    <!--                RZAD 3              -->
+
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:text="@string/seven"
+        android:id="@+id/seven"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:text="@string/eight"
+        android:id="@+id/eight"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="3"
+        android:layout_column="2"
+        android:text="@string/nine"
+        android:id="@+id/nine"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="3"
+        android:layout_column="3"
+        android:text="@string/multiply"
+        android:id="@+id/multiply"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+
+    <!--                RZAD 4              -->
+
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:text="@string/four"
+        android:id="@+id/four"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="4"
+        android:layout_column="1"
+        android:text="@string/five"
+        android:id="@+id/five"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="4"
+        android:layout_column="2"
+        android:text="@string/six"
+        android:id="@+id/six"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="4"
+        android:layout_column="3"
+        android:text="@string/subtraction"
+        android:id="@+id/subtraction"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+
+    <!--                RZAD 5              -->
+
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:text="@string/one"
+        android:id="@+id/one"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="5"
+        android:layout_column="1"
+        android:text="@string/two"
+        android:id="@+id/two"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="5"
+        android:layout_column="2"
+        android:text="@string/three"
+        android:id="@+id/three"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="5"
+        android:layout_column="3"
+        android:text="@string/addition"
+        android:id="@+id/addition"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+
+    <!--                RZAD 6              -->
+
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="6"
+        android:layout_column="0"
+        android:text="@string/exp"
+        android:id="@+id/exp"
+        android:layout_columnWeight="1"
+        android:textColor="@color/colorFunctionality"
+        android:background="@color/colorBlack"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="6"
+        android:layout_column="1"
+        android:text="@string/zero"
+        android:id="@+id/zero"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="6"
+        android:layout_column="2"
+        android:text="@string/dot"
+        android:id="@+id/dot"
+        android:layout_columnWeight="1"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+    <Button
+        android:height="@dimen/buttonsHeightLarge"
+        android:layout_row="6"
+        android:layout_column="3"
+        android:text="@string/equals"
+        android:id="@+id/equals"
+        android:layout_columnWeight="1"
+        android:background="@color/colorEquals"
+        android:textColor="@color/colorTextEquals"
+        android:ellipsize="end"
+        app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSize"
+        app:autoSizeMinTextSize="@dimen/autoSizeMinTextSize"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+        android:gravity="center"
+        />
+
+
+</GridLayout>
