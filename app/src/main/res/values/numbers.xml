@@ -4,7 +4,18 @@
     <dimen name="sixtyDp">60dp</dimen>
     <dimen name="buttonsHeight">40dp</dimen>
     <dimen name="buttonsHeightLarge">75dp</dimen>
+
+    <dimen name="autoSizeMinTextSize">20sp</dimen>
     <dimen name="autoSizeMaxTextSize">100sp</dimen>
-    <dimen name="autoSizeMinTextSize">10sp</dimen>
     <dimen name="autoSizeStepGranularity">2sp</dimen>
+
+    <dimen name="autoSizeMinTextSizeWelcome">10sp</dimen>
+    <dimen name="autoSizeMaxTextSizeWelcome">40sp</dimen>
+    <dimen name="autoSizeStepGranularityWelcome">2sp</dimen>
+
+    <dimen name="autoSizeMinTextSizeSimple">10sp</dimen>
+    <dimen name="autoSizeMaxTextSizeSimple">40sp</dimen>
+    <dimen name="autoSizeStepGranularitySimple">2sp</dimen>
+
+    <dimen name="buttonsHeightLargeSimpleCal">100dp</dimen>
 </resources>

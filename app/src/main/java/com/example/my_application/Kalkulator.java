@@ -3,6 +3,7 @@ package com.example.my_application;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,8 @@ public class Kalkulator extends AppCompatActivity {
 
 //    tu przechowuje wynik działania
     private String stringContainer = "";
+//  info: (int) 1 => cal prosty, (int) 0 => cal zaawansowany
+    int chosenOne = 1;
 
     //      powiadomienie na dole ekranu :)
     void makeToast(String typeWhatYouWantToSeeAsAString) {
@@ -158,6 +161,17 @@ public class Kalkulator extends AppCompatActivity {
 //            return false;
 //    }
 
+    private void setAdvancedButtons()
+    {
+        this.btn_openBracket = findViewById(R.id.openBracket);
+        this.btn_closeBracket = findViewById(R.id.closeBracket);
+        this.btn_ln = findViewById(R.id.ln);
+        this.btn_sin = findViewById(R.id.sin);
+        this.btn_cos = findViewById(R.id.cos);
+        this.btn_tan = findViewById(R.id.tan);
+        this.btn_log = findViewById(R.id.log);
+        this.btn_exp = findViewById(R.id.exp);
+    }
     //    ustawia wszystkie przyciski, uzywajac findViewById()
     public void setButtons()
     {
@@ -182,14 +196,8 @@ public class Kalkulator extends AppCompatActivity {
         this.btn_dot = findViewById(R.id.dot);
         this.btn_equals = findViewById(R.id.equals);
         this.btn_opposite = findViewById(R.id.oppositeValue);
-        this.btn_openBracket = findViewById(R.id.openBracket);
-        this.btn_closeBracket = findViewById(R.id.closeBracket);
-        this.btn_ln = findViewById(R.id.ln);
-        this.btn_sin = findViewById(R.id.sin);
-        this.btn_cos = findViewById(R.id.cos);
-        this.btn_tan = findViewById(R.id.tan);
-        this.btn_log = findViewById(R.id.log);
-        this.btn_exp = findViewById(R.id.exp);
+        if(chosenOne == 0)  // cal zaawansowany
+        setAdvancedButtons();
     }
 
     public void setTextView()
@@ -201,6 +209,7 @@ public class Kalkulator extends AppCompatActivity {
 
     public String addToStringContainer(Button button)
 //    dodaje symbole do pojemnika na string
+//    i aktualizuje od razu textView_input
     {
         this.stringContainer = this.stringContainer + button.getText().toString();
         textView_input.setText(this.stringContainer);
@@ -260,14 +269,21 @@ public class Kalkulator extends AppCompatActivity {
 //    gdy stworzysz aplikację
     {
         super.onCreate(savedInstanceState);
-//        ustaw activity_main3
-        setContentView(R.layout.activity_main3);
+        //odbieram info z poprzedniej aktywnosci :)))) ------------------------------------------------------------------
+        Intent intent = getIntent();
+        String message = intent.getStringExtra("isThisSimpleCalculator");
+        chosenOne = Integer.valueOf(message);
 
+        //        ustaw activity_main3
+        if(chosenOne == 0)
+            setContentView(R.layout.activity_main3);            // ustaw zaawansowany kalkulator i zostaw kodzik
+        else
+            setContentView(R.layout.simple_calculator_layout);  // ustaw prosty i zostaw kodzik
 
 //        makeToast(stringContainer);
-//        findViewById buttons
+//        findViewById Buttons
         setButtons();
-//        findViewById buttons
+//        findViewById TextView
         setTextView();
 
         btn_ac.setOnClickListener(new View.OnClickListener() {
@@ -403,72 +419,75 @@ public class Kalkulator extends AppCompatActivity {
             }
         });
 
-        btn_openBracket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_openBracket);
-            }
-        });
+        if(chosenOne == 0)  // cal zaawansowany
+        {
+            btn_openBracket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stringContainer = addToStringContainer(btn_openBracket);
+                }
+            });
 
-        btn_closeBracket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_closeBracket);
-            }
-        });
+            btn_closeBracket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stringContainer = addToStringContainer(btn_closeBracket);
+                }
+            });
 
-        btn_ln.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_ln);
-                setStringContainer(stringContainer+"(");
-                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
-            }
-        });
+            btn_ln.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stringContainer = addToStringContainer(btn_ln);
+                    setStringContainer(stringContainer+"(");
+                    textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+                }
+            });
 
-        btn_sin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_sin);
-                setStringContainer(stringContainer+"(");
-                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
-            }
-        });
+            btn_sin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stringContainer = addToStringContainer(btn_sin);
+                    setStringContainer(stringContainer+"(");
+                    textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+                }
+            });
 
-        btn_cos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_cos);
-                setStringContainer(stringContainer+"(");
-                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
-            }
-        });
+            btn_cos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stringContainer = addToStringContainer(btn_cos);
+                    setStringContainer(stringContainer+"(");
+                    textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+                }
+            });
 
-        btn_tan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_tan);
-                setStringContainer(stringContainer+"(");
-                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
-            }
-        });
+            btn_tan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stringContainer = addToStringContainer(btn_tan);
+                    setStringContainer(stringContainer+"(");
+                    textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+                }
+            });
 
-        btn_log.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stringContainer = addToStringContainer(btn_log);
-                setStringContainer(stringContainer+"X(");
-                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
-            }
-        });
+            btn_log.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stringContainer = addToStringContainer(btn_log);
+                    setStringContainer(stringContainer+"X(");
+                    textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+                }
+            });
 
-        btn_exp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setStringContainer(stringContainer+"^(");
-                textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
-            }
-        });
+            btn_exp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setStringContainer(stringContainer+"^(");
+                    textView_input = replaceTheContentOfTextView(textView_input, stringContainer);
+                }
+            });
+        }
 
 //        zmiana znaku
         btn_opposite.setOnClickListener(new View.OnClickListener() {

@@ -23,7 +23,7 @@
     <string name="input">INPUT</string>
     <string name="output">OUTPUT</string>
     <string name="information">\n\nKalkulator\n\nArkadiusz Krupiński\n\nAby rozpocząć kliknij ROZPOCZNIJ</string>
-    <string name="launchButton">ROZPOCZNIJ</string>
+    <string name="launchButtonAdvanced">Kalkulator zaawansowany</string>
     <string name="exit">Wyjdź z programu</string>
 
     <string name="oppositeValue">+/-</string>
@@ -36,5 +36,8 @@
     <string name="cos">cos</string>
     <string name="sin">sin</string>
     <string name="tan">tan</string>
+
+    <string name="launchButtonSimple">Kalkulator prosty</string>
+    <string name="launchInfo">Informacje</string>
 
 </resources>

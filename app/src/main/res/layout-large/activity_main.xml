@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/colorBlack"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+        <Button
+            android:id="@+id/turnOnTheInfo"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignTop="@id/turnOnTheCalculatorSimple"
+            android:layout_marginTop="-100dp"
+            android:background="@color/colorBlack"
+            android:text="@string/launchInfo"
+            android:textColor="@color/colorFunctionality"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:ellipsize="end"
+            app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSizeWelcome"
+            app:autoSizeMinTextSize="@dimen/autoSizeMinTextSizeWelcome"
+            app:autoSizeTextType="uniform"
+            app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+            />
+
+        <Button
+            android:id="@+id/turnOnTheCalculatorSimple"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorBlack"
+            android:text="@string/launchButtonSimple"
+            android:textColor="@color/colorFunctionality"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+
+            android:ellipsize="end"
+            app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSizeWelcome"
+            app:autoSizeMinTextSize="@dimen/autoSizeMinTextSizeWelcome"
+            app:autoSizeTextType="uniform"
+            app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+            />
+
+        <Button
+            android:id="@+id/turnOnTheCalculatorAdvanced"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignBottom="@id/turnOnTheCalculatorSimple"
+            android:layout_marginBottom="-100dp"
+            android:background="@color/colorBlack"
+            android:text="@string/launchButtonAdvanced"
+            android:textColor="@color/colorFunctionality"
+            android:ellipsize="end"
+            app:autoSizeMaxTextSize="@dimen/autoSizeMaxTextSizeWelcome"
+            app:autoSizeMinTextSize="@dimen/autoSizeMinTextSizeWelcome"
+            app:autoSizeTextType="uniform"
+            app:autoSizeStepGranularity="@dimen/autoSizeStepGranularity"
+            />
+
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@color/colorBlack"
+            android:text="@string/exit"
+            android:textColor="@color/colorExitFaded"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
