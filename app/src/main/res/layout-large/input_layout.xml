@@ -8,12 +8,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-<!--    Auto Scale TextView Text to Fit within Bounds   -->
-<!--    _____________________FOUND_____________________ -->
+    <!--    Auto Scale TextView Text to Fit within Bounds   -->
+    <!--    _____________________FOUND_____________________ -->
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:minHeight="50dp"
         android:id="@+id/input"
         android:gravity="end"

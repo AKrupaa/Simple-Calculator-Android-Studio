@@ -10,7 +10,7 @@
     <include
         layout="@layout/input_layout"
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="200dp" />
 <!--    200 dp dla telefonu/tabletu na stałe - działa dla 5"+ , let go! -->
 
 <!-- po co Relative Layout? -->
